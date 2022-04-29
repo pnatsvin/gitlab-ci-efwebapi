@@ -1,0 +1,28 @@
+services:
+  efwebapi_v2:
+    build:
+      context: D:\Innopolis\Projects\EFWebapi_v2_Docker\EFWebapi_v2_Write_to_File\EFWebapi_v2
+      dockerfile: EFWebapi_v2/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      DbPassword: Password011090
+      DbPort: '1433'
+      DbServer: ms-sql-server
+      DbUser: sa
+    image: efwebapiv2
+    ports:
+    - target: 80
+    - target: 443
+    volumes:
+    - C:\Users\adm\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\adm\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  ms-sql-server:
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: Password011090
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+    - published: 1433
+      target: 1433
+version: '3.4'

@@ -1,0 +1,4 @@
+Start Log
+Append logExecuted DbCommand (37ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [d].[Id], [d].[Created], [d].[Params], [d].[Result]
+FROM [Days] AS [d]

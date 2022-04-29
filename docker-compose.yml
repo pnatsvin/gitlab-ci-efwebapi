@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: "Password011090"
+    ports:
+        - "1433:1433"
+
+  efwebapi_v2:
+    image: ${DOCKER_REGISTRY-}efwebapiv2
+    environment:
+        DbServer: "ms-sql-server"
+        DbPort: "1433"
+        DbUser: "sa"
+        DbPassword: "Password011090"
+
+    build:
+      context: .
+      dockerfile: EFWebapi_v2/Dockerfile
