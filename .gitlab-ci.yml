@@ -21,12 +21,12 @@ build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - cd $CI_PROJECT_DIR/EFWebapi_v2
-    - dotnet build -o /home/gitlab-runner/Release -c Release
+    - dotnet build EFWebapi_v2 -c Release -o ../artifacts/EFWebapi_v2
     - pwd 
     - echo "Ok"
   artifacts:
     paths:
-      - /home/gitlab-runner/Release
+      - artifacts/EFWebapi_v2
   tags:
     - "net"  
 
