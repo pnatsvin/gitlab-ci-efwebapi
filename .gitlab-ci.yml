@@ -22,7 +22,7 @@ build-job:       # This job runs in the build stage, which runs first.
   script:
     - cd $CI_PROJECT_DIR/EFWebapi_v2
     - dotnet build -c Release
-    - Echo "Ok"
+    - echo "Ok"
   tags:
     - "net"  
 
