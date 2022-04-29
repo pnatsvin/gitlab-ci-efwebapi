@@ -15,6 +15,7 @@
 
 stages:          # List of stages for jobs, and their order of execution
   - build
+
   
 
 build-job:       # This job runs in the build stage, which runs first.
@@ -22,10 +23,10 @@ build-job:       # This job runs in the build stage, which runs first.
   script:
     - dotnet build EFWebapi_v2 -c Release -o ./artifacts/EFWebapi_v2
     - pwd 
-    - echo "Ok"
+    - echo $job_id > ./state
+  when: manual  
   artifacts:
     paths:
       - ./artifacts/EFWebapi_v2
   tags:
     - "net"  
-
