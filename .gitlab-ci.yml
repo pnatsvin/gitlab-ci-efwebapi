@@ -20,13 +20,12 @@ stages:          # List of stages for jobs, and their order of execution
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
-    - whoami
-    - dotnet build EFWebapi_v2 -c Release -o /home/gitlab-runner/artifacts/EFWebapi_v2
+    - dotnet build EFWebapi_v2 -c Release -o ../artifacts/EFWebapi_v2
     - pwd 
     - echo "Ok"
   artifacts:
     paths:
-      - /home/gitlab-runner/artifacts/EFWebapi_v2
+      - artifacts/EFWebapi_v2
   tags:
     - "net"  
 
