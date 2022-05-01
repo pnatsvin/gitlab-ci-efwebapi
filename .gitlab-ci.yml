@@ -36,8 +36,13 @@ deploy-job:
     - pwd
     - 'curl --output /home/gitlab-runner/lastproject/artifacts.zip --header "PRIVATE-TOKEN: glpat-ciGZsJ2QCAvzvsTKgzbW" "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job"'
     - cd /home/gitlab-runner/lastproject/
+    - pwd
+    - ls -las
     - unzip artifacts.zip -d /home/gitlab-runner/project
     - pwd
+  when: manual
+  only:
+    - main  
   tags:
     - "net"  
     
