@@ -34,11 +34,11 @@ deploy-job:
   stage: deploy 
   script:
     - pwd
-    - 'curl --output /home/gitlab-runner/lastproject/artifacts.tar --header "PRIVATE-TOKEN: glpat-ciGZsJ2QCAvzvsTKgzbW" "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job"'
+    - 'curl --output /home/gitlab-runner/lastproject/artifacts.tar --header "PRIVATE-TOKEN: glpat-ciGZsJ2QCAvzvsTKgzbW" "https://gitlab.com/api/v4/projects/35763098/jobs/artifacts/main/download?job=build-job"'
     - cd /home/gitlab-runner/lastproject/
     - pwd
     - ls -las
-    - gunzip /home/gitlab-runner/lastproject/artifacts.zip -d /home/gitlab-runner/project
+    - unzip /home/gitlab-runner/lastproject/artifacts.zip -d /home/gitlab-runner/project
     - pwd
   when: manual
   only:
