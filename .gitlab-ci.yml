@@ -15,7 +15,7 @@
 
 stages:          # List of stages for jobs, and their order of execution
   - build
-
+  - deploy
   
 
 build-job:       # This job runs in the build stage, which runs first.
@@ -30,3 +30,12 @@ build-job:       # This job runs in the build stage, which runs first.
       - ./artifacts/EFWebapi_v2
   tags:
     - "net"  
+deploy-job:
+  stage: deploy 
+  script:
+    - artifact_download:
+  stage: test
+  script:
+    - pwd
+    - curl --header "PRIVATE-TOKEN: glpat-ciGZsJ2QCAvzvsTKgzbW" "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job"
+    - pwd
