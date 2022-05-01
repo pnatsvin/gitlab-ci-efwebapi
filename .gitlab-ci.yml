@@ -34,6 +34,6 @@ deploy-job:
   stage: deploy 
   script:
     - pwd
-    - curl --header "PRIVATE-TOKEN: glpat-ciGZsJ2QCAvzvsTKgzbW" "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job"
+    - 'curl --header "PRIVATE-TOKEN: glpat-ciGZsJ2QCAvzvsTKgzbW" "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job"'
     - pwd
     
