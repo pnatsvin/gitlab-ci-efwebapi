@@ -38,7 +38,7 @@ deploy-job:
     - cd /home/gitlab-runner/lastproject/
     - pwd
     - ls -las
-    - unzip /home/gitlab-runner/lastproject/artifacts1.zip -d /home/gitlab-runner/project
+    - unzip -o /home/gitlab-runner/lastproject/artifacts1.zip -d /home/gitlab-runner/project
     - pwd
   when: manual
   only:
