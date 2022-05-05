@@ -57,6 +57,6 @@ build-docker-job:
   stage: build-docker
   script:
     - cd $CI_PROJECT_DIR
-    - pwd
+    - docker build -f EFWebapi_v2/Dockerfile -t my-app .
   tags:
     - "net"  
