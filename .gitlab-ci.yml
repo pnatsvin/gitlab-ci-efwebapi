@@ -17,6 +17,7 @@ stages:          # List of stages for jobs, and their order of execution
   - test
   - build
   - deploy
+  - build-docker
   
 
 test-job:
@@ -31,8 +32,6 @@ build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - dotnet build EFWebapi_v2 -c Release -o ./artifacts/EFWebapi_v2
-    - pwd 
-    - echo $job_id > ./state
   when: manual  
   artifacts:
     paths:
@@ -54,4 +53,10 @@ deploy-job:
     - main  
   tags:
     - "net"  
-    
+build-docker-job:
+  stage: build-docker
+  script:
+    - cd $CI_PROJECT_DIR
+    - pwd
+  tags:
+    - "net"  
