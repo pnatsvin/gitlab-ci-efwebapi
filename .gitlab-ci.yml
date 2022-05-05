@@ -42,7 +42,8 @@ deploy-job:
   stage: deploy 
   script:
     - pwd
-    - 'wget "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job" -O /home/gitlab-runner/lastproject/artifacts1.zip'
+    - - 'curl --location --output /home/gitlab-runner/lastproject/artifacts1.zip "https://gitlab.com/api/v4/projects/35763098/jobs/artifacts/mmain/download?job=build-job"'
+ #   - 'wget "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job" -O /home/gitlab-runner/lastproject/artifacts1.zip'
     - cd /home/gitlab-runner/lastproject/
     - pwd
     - ls -las
