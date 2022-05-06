@@ -43,7 +43,8 @@ deploy:
   stage: deploy 
   script:
     - pwd
-    - curl -v -L --output Release.zip "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/$CI_COMMIT_REF_NAME/download?job=build"
+    - echo $CI_PROJECT_ID
+    - curl -v -L --output Release.zip "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/main/download?job=build"
  #   - 'wget "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job" -O /home/gitlab-runner/lastproject/artifacts1.zip'
     - pwd
     - if [ -d ~/project ]; then echo "ok"; else mkdir ~/project; fi;
