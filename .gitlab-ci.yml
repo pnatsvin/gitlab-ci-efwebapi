@@ -44,7 +44,6 @@ deploy-job:
     - pwd
     - - 'curl --location --output artifacts.zip "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/main/download?job=build-job"'
  #   - 'wget "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job" -O /home/gitlab-runner/lastproject/artifacts1.zip'
-    - cd /home/gitlab-runner/lastproject/
     - pwd
     - ls -las
     - unzip -o artifacts.zip -d /home/gitlab-runner/project
