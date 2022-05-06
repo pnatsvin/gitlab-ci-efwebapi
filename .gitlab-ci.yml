@@ -20,7 +20,7 @@ stages:          # List of stages for jobs, and their order of execution
   - build-docker
   
 
-test-job:
+test:
   stage: test
   script:
     - cd /home/gitlab-runner/
@@ -28,7 +28,7 @@ test-job:
     - ./rtest.sh
   tags:
     - "net"  
-build-job:       # This job runs in the build stage, which runs first.
+build:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - dotnet build EFWebapi_v2 -c Release -o ./artifacts/EFWebapi_v2
@@ -38,11 +38,11 @@ build-job:       # This job runs in the build stage, which runs first.
       - ./artifacts/EFWebapi_v2
   tags:
     - "net"  
-deploy-job:
+deploy:
   stage: deploy 
   script:
     - pwd
-    - - 'curl --location --output artifacts.zip "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/main/download?job=build-job"'
+    - curl --location --output artifacts.zip https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/$CI_COMMIT_REF_NAME/download?job=build
  #   - 'wget "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job" -O /home/gitlab-runner/lastproject/artifacts1.zip'
     - pwd
     - ls -las
@@ -53,7 +53,7 @@ deploy-job:
     - main  
   tags:
     - "net"  
-build-docker-job:
+docker:
   stage: build-docker
   script:
     - cd $CI_PROJECT_DIR
