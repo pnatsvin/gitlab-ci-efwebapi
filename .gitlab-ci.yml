@@ -77,7 +77,7 @@ build-docker-deb:
     - job_id_deb=$(cat /home/gitlab-runner/job_id_deb)
     - curl --location --output efapp.zip  "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/$job_id_deb/artifacts"
     - if [ -d ~/deb ]; then echo "ok"; else mkdir ~/deb; fi;
-    - unzip -o efapp.zip -d ~/deb &&  cp -rf ~/deb/artifacts/efapp.deb ~/deb && rm -rf ~/deb/artifacts && cp -rf /home/gitlab-runner/project/DEBIAN /home/gitlab-runner/deb/
+    - unzip -o efapp.zip -d ~/deb &&  cp -rf ~/deb/artifacts/efapp.deb ~/deb && rm -rf ~/deb/artifacts && cp -rf /home/gitlab-runner/project/DEBIAN /home/gitlab-runner/deb/ && cp $CI_PROJECT_DIR/install.sh ~/project
     - cd ~/project
     #- dpkg --extract efapp.deb ~/deb
     - docker build -f $CI_PROJECT_DIR/EFWebapi_v2/Dockerfile_deb -t my-app:deb .
