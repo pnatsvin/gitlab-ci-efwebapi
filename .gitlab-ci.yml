@@ -43,29 +43,29 @@ build:       # This job runs in the build stage, which runs first.
   tags:
     - "net" 
 
-build-deb:
+#build-deb:
 #  stage: build-deb
-  script:
-    - echo $CI_JOB_ID > /home/gitlab-runner/job_id_deb 
-    - dpkg-deb --build . efapp.deb
-  artifacts:
-    paths:
-      - ./efapp.deb
-    expire_in: 7 days
-  tags:
-    - "net"
+#  script:
+#    - echo $CI_JOB_ID > /home/gitlab-runner/job_id_deb 
+#    - dpkg-deb --build . efapp.deb
+#  artifacts:
+#    paths:
+#      - ./efapp.deb
+#    expire_in: 7 days
+#  tags:
+#    - "net"
 
-build-docker-deb:   
+#build-docker-deb:   
 #  stage: build-docker-deb   
-  script:
-    - pwd
-    - job_id_deb=$(cat /home/gitlab-runner/job_id_deb)
-    - curl --location --output Release.zip  "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/$job_id_deb/artifacts"
-    - if [ -d ~/deb ]; then echo "ok"; else mkdir ~/deb; fi;
-    - dpkg --extract efapp.deb ~/deb
-    - docker build -t pnatsvin/gitlab-ci-efwebapi:deb ~/deb/ 
-  tags:
-    - "net"
+#  script:
+#    - pwd
+#    - job_id_deb=$(cat /home/gitlab-runner/job_id_deb)
+#    - curl --location --output Release.zip  "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/$job_id_deb/artifacts"
+#    - if [ -d ~/deb ]; then echo "ok"; else mkdir ~/deb; fi;
+#    - dpkg --extract efapp.deb ~/deb
+#    - docker build -t pnatsvin/gitlab-ci-efwebapi:deb ~/deb/ 
+#  tags:
+#    - "net"
 
 deploy:
   stage: deploy 
