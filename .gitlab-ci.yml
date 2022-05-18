@@ -50,7 +50,7 @@ build-deb:
     - cd ~/project/ && dpkg-deb --build . efapp.deb
   artifacts:
     paths:
-      - ~/project/efapp.deb
+      - /home/gitlab-runner/project/efapp.deb
   tags:
     - "net"
 
