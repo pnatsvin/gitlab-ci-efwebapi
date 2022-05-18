@@ -16,7 +16,7 @@
 stages:          # List of stages for jobs, and their order of execution
   - test
   - build
-  #- build-deb
+  - build-deb
   #- build-docker-deb
   - deploy
   - build-docker
@@ -43,17 +43,16 @@ build:       # This job runs in the build stage, which runs first.
   tags:
     - "net" 
 
-#build-deb:
-#  stage: build-deb
-#  script:
-#    - echo $CI_JOB_ID > /home/gitlab-runner/job_id_deb 
-#    - dpkg-deb --build . efapp.deb
-#  artifacts:
-#    paths:
-#      - ./efapp.deb
-#    expire_in: 7 days
-#  tags:
-#    - "net"
+build-deb:
+  stage: build-deb
+  script:
+    - echo $CI_JOB_ID > /home/gitlab-runner/job_id_deb 
+    - cd ~/project/ && dpkg-deb --build . efapp.deb
+  artifacts:
+    paths:
+      - ~/project/efapp.deb
+  tags:
+    - "net"
 
 #build-docker-deb:   
 #  stage: build-docker-deb   
