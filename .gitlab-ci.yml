@@ -47,7 +47,7 @@ build-deb:
   stage: build-deb
   script:
     - echo $CI_JOB_ID > /home/gitlab-runner/job_id_deb 
-    - cd ~/project/ && dpkg-deb --build . efapp.deb
+    - cd ~/project/ && dpkg-deb -b . /home/gitlab-runner/project/efapp.deb
   artifacts:
     paths:
       - /home/gitlab-runner/project/efapp.deb
