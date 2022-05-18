@@ -80,7 +80,7 @@ build-docker-deb:
     - unzip -o efapp.zip -d ~/deb &&  cp -rf ~/deb/artifacts/efapp.deb ~/deb && rm -rf ~/deb/artifacts && cp -rf /home/gitlab-runner/project/DEBIAN /home/gitlab-runner/deb/
     - cd ~/project
     #- dpkg --extract efapp.deb ~/deb
-    - docker build -f $CI_PROJECT_DIR/Dockerfile_deb -t my-app:deb .
+    - docker build -f $CI_PROJECT_DIR/EFWebapi_v2/Dockerfile_deb -t my-app:deb .
   tags:
     - "net"
 
