@@ -31,6 +31,7 @@ test:
 build:       # This job runs in the build stage, which runs first.
   stage: build
   script:
+    - echo $CI_JOB_ID > /home/gitlab-runner/job_id
     - dotnet build EFWebapi_v2 -c Release -o ./artifacts/EFWebapi_v2
  # when: manual  
   artifacts:
@@ -44,7 +45,9 @@ deploy:
   script:
     - pwd
     - echo $CI_PROJECT_ID
-    - curl -v -L --output Release.zip "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/main/download?job=build"
+    - job_id = $(cat /home/gitlab-runner/job_id)
+    - curl --location --output Release.zip  "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/$job_id/artifacts"
+ #   - curl -v -L --output Release.zip "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/main/download?job=build"
  #   - 'wget "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job" -O /home/gitlab-runner/lastproject/artifacts1.zip'
     - pwd
     - if [ -d ~/project ]; then echo "ok"; else mkdir ~/project; fi;
