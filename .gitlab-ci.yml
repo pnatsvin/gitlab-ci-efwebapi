@@ -16,9 +16,9 @@
 stages:          # List of stages for jobs, and their order of execution
   - test
   - build
+  - deploy
   - build-deb
   #- build-docker-deb
-  - deploy
   - build-docker
   
 
@@ -43,15 +43,31 @@ build:       # This job runs in the build stage, which runs first.
   tags:
     - "net" 
 
+deploy:
+  stage: deploy 
+  script:
+    - pwd
+    - echo $CI_PROJECT_ID
+    - jobid=$(cat /home/gitlab-runner/job_id)
+    - curl --location --output Release.zip  "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/$jobid/artifacts"
+    - pwd
+    - if [ -d ~/project ]; then echo "ok"; else mkdir ~/project; fi; 
+    - unzip -o Release.zip -d ~/project &&  cp -rf ~/project/artifacts/EFWebapi_v2 ~/project && rm -rf ~/project/artifacts
+  #when: manual
+ # only:
+ #   - main  
+  tags:
+    - "net"      
+
 build-deb:
   stage: build-deb
   script:
-    - echo $CI_JOB_ID > /home/gitlab-runner/job_id_deb
-    - pwd 
-    - dpkg-deb -b . efapp.deb
+    - pwd
+    - echo $CI_JOB_ID > /home/gitlab-runner/job_id_deb 
+    - cd ~/project/ && dpkg-deb -b . efapp.deb && cp ./efapp.deb $CI_PROJECT_DIR
   artifacts:
     paths:
-      - ./efapp.deb
+      - $CI_PROJECT_DIR/efapp.deb
   tags:
     - "net"
 
@@ -67,21 +83,7 @@ build-deb:
 #  tags:
 #    - "net"
 
-deploy:
-  stage: deploy 
-  script:
-    - pwd
-    - echo $CI_PROJECT_ID
-    - jobid=$(cat /home/gitlab-runner/job_id)
-    - curl --location --output Release.zip  "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/$jobid/artifacts"
-    - pwd
-    - if [ -d ~/project ]; then echo "ok"; else mkdir ~/project; fi; 
-    - unzip -o Release.zip -d ~/project &&  cp -rf ~/project/artifacts/EFWebapi_v2 ~/project && rm -rf ~/project/artifacts
-  #when: manual
- # only:
- #   - main  
-  tags:
-    - "net"  
+
 docker:
   stage: build-docker
   script:
