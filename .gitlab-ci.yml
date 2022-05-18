@@ -76,7 +76,7 @@ deploy:
     - curl --location --output Release.zip  "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/$jobid/artifacts"
     - pwd
     - if [ -d ~/project ]; then echo "ok"; else mkdir ~/project; fi; 
-    - unzip -o Release.zip -d ~/project && mv EFWebapi_v2 ~/project && rm ~project/artifacts
+    - unzip -o Release.zip -d ~/project && mv EFWebapi_v2 ~/project && rm ~/project/artifacts
   #when: manual
  # only:
  #   - main  
