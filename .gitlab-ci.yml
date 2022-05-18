@@ -16,8 +16,8 @@
 stages:          # List of stages for jobs, and their order of execution
   - test
   - build
-  - build-deb
-  - build-docker-deb
+  #- build-deb
+  #- build-docker-deb
   - deploy
   - build-docker
   
