@@ -46,11 +46,12 @@ build:       # This job runs in the build stage, which runs first.
 build-deb:
   stage: build-deb
   script:
-    - echo $CI_JOB_ID > /home/gitlab-runner/job_id_deb 
-    - cd ~/project/ && dpkg-deb -b . /home/gitlab-runner/project/efapp.deb
+    - echo $CI_JOB_ID > /home/gitlab-runner/job_id_deb
+    - pwd 
+    - dpkg-deb -b . efapp.deb
   artifacts:
     paths:
-      - /home/gitlab-runner/project/efapp.deb
+      - ./efapp.deb
   tags:
     - "net"
 
