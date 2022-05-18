@@ -45,8 +45,8 @@ deploy:
   script:
     - pwd
     - echo $CI_PROJECT_ID
-    - job_id = $(cat /home/gitlab-runner/job_id)
-    - curl --location --output Release.zip  "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/$job_id/artifacts"
+    - jobid=$(cat /home/gitlab-runner/job_id)
+    - curl --location --output Release.zip  "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/$jobid/artifacts"
  #   - curl -v -L --output Release.zip "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/main/download?job=build"
  #   - 'wget "https://gitlab.com/pnatsvin/gitlab-ci-efwebapi/-/jobs/artifacts/main/download?job=build-job" -O /home/gitlab-runner/lastproject/artifacts1.zip'
     - pwd
