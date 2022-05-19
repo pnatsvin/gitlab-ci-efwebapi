@@ -1,7 +1,0 @@
-FROM ubuntu:20.04
-# copy install script
-COPY ./install.sh /
-# copy deb file
-COPY ./efapp.deb /deb
-RUN chmod +x /install.sh
-CMD ["/install.sh"] 
