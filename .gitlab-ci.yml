@@ -22,9 +22,6 @@ stages:          # List of stages for jobs, and their order of execution
   - build-deb
   - build-docker-deb
   - build-docker
-  - terraform-validate
-  - terraform-plan
-  - terraform-apply
   
 
 test:
@@ -97,46 +94,3 @@ docker:
   tags:
     - "net"  
 
-terraform-validate:
-  stage: terraform-validate
-  before_script:
-    - terraform init
-  cache:
-    key: terraform
-    paths:
-      - .terraform
-  script:
-    - terraform validate
-  tags:
-    - "net"  
-
-terraform-plan:
-  stage: terraform-plan
-  before_script:
-    - terraform init
-  cache:
-    key: terraform
-    paths:
-      - .terraform
-  script:
-    - terraform plan --out plan
-  artifacts:
-    paths:
-      - plan
-  tags:
-    - "net"        
-
-terraform-apply:
-  stage: terraform-apply
-  before_script:
-    - terraform init
-  cache:
-    key: terraform
-    paths:
-      - .terraform
-  script:
-    - terraform apply --auto-approve plan
-  when: manual
-  allow_failure: false
-  tags:
-    - "net"
