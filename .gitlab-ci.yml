@@ -107,6 +107,8 @@ terraform-validate:
       - .terraform
   script:
     - terraform validate
+  tags:
+    - "net"  
 
 terraform-plan:
   stage: terraform-plan
@@ -120,7 +122,9 @@ terraform-plan:
     - terraform plan --out plan
   artifacts:
     paths:
-      - plan    
+      - plan
+  tags:
+    - "net"        
 
 terraform-apply:
   stage: terraform-apply
@@ -134,3 +138,5 @@ terraform-apply:
     - terraform apply --auto-approve plan
   when: manual
   allow_failure: false
+  tags:
+    - "net"
