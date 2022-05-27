@@ -1,0 +1,9 @@
+#cloud-config
+users:
+  - name: pnats
+    groups: sudo
+    shell /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWORD;ALL']
+    ssh_authorized_keys:
+      - ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOpHIv95OAuFkF06v4AphOa6drM6GD3NOzU2cnb/tAeQzCwFk4HhezhipMWt7BmByukGFA4D1JcmyldQAYljvju9DPv4Z05EXKyVLOoXKwnHnN5DNjqq2+HlB9jOf08xJIkWoO4/3r85aI7L9Ujocy9mqkNusVKL9k4i+X6mIzk8y8URFZw3maRYQj2xfYAL9lqHW7KXErhSF39s2EjN7zsmm/uhyUANOJqtuiBwx1cp0M2xYbaOYHqMLc22Dhx3PXc+9uCYp3fBbHKXqTR6gKRNyS8Ia1Sz/W5SiNqQxsnHedrEAIVVAdMPMQrNyq83fdSunffUwrlln60JeVWEMP pnatsvin@gmail.com
+    
