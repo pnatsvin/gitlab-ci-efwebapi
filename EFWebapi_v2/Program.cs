@@ -17,7 +17,7 @@ builder.Services.AddDbContext<SqlEfContex>(opt =>
 {
 var config = builder.Configuration;
 
- var server = config["DbServer"] ?? "51.250.94.14";
+ var server = config["DbServer"] ?? "51.250.88.138";
  var port = config["DbPort"] ?? "1433";
  var user = config["DbUser"] ?? "sa";
  var password = config["DbPassword"] ?? "Password011090";
